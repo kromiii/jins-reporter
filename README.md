@@ -41,7 +41,7 @@ token.txt が生成されます
 実行
 
 ```bash
-$ jins-reporter
+$ python jins-reporter.py
 ```
 
 定期的に実行する場合は cron を利用します
