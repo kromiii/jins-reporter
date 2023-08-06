@@ -2,29 +2,22 @@
 
 ## Overview
 JINS-API に接続して JINS MEME のデータを取得し Twitter に投稿するプログラムです
-
-## Description
-プログラムを実行すると当日のJINS MEMEのデータを取得し、下記の指標を計算した上で、指定した Twitter アカウントに投稿します
+Github Action を設定することで定期的に実行することができます
 
 レポートに含まれる指標は以下の通りです
 * 装着時間：JINS MEME を装着していた時間
 * 歩数：JINS MEME を装着していた時間における歩数
-* 頭部の傾き（左右）：JINS MEME を装着していた時間における頭部の傾き（横）
-* 頭部の傾き（前後）：JINS MEME を装着していた時間における頭部の傾き（縦）
-* まばたき間隔（秒）：JINS MEME を装着していた時間におけるまばたき間隔（秒）
+* 頭部の傾き（前後）：頭部の傾き（縦） 値が大きいほど前傾姿勢
+* 頭部の傾き（左右）：頭部の傾き（横） 値が大きいほど右傾姿勢
+* まばたき間隔（秒）：まばたき間隔（秒） 長すぎるとドライアイの可能性あり
 
 ## Usage
 
-環境変数を設定
+JINS API トークンを取得するための環境変数を設定
 
 ```bash
 $ export JINS_CLIENT_ID=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 $ export JINS_CLIENT_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-$ export
-TWITTER_CONSUMER_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-$ export TWITTER_CONSUMER_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-$ export TWITTER_ACCESS_TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-$ export TWITTER_ACCESS_TOKEN_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
 JINS API を使うためのトークンを取得
@@ -38,18 +31,26 @@ token.txt が生成されます
 
 生成されたトークンは３０日間有効です
 
+Twitter に投稿するための環境変数を設定
+
+```bash
+$ export TWITTER_CONSUMER_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+$ export TWITTER_CONSUMER_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+$ export TWITTER_ACCESS_TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+$ export TWITTER_ACCESS_TOKEN_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
 実行
 
 ```bash
 $ python jins-reporter.py
 ```
 
-定期的に実行する場合は cron を利用します
+レポートが生成され、Twitter に投稿されます
 
-```bash
-$ crontab -e
+## Github Action
+Github Action を使う場合は token.txt の内容を Github の Secrets に登録してください
+
 ```
-
-```bash
-*/5 * * * * /path/to/jins-reporter
+JINS_TOKEN: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
