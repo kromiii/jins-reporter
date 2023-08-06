@@ -2,6 +2,7 @@ import urllib.request
 import json
 import pandas as pd
 import datetime
+import os
 
 def fetch_data():
   #JINS MEME API 固有値
