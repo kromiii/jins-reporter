@@ -55,8 +55,12 @@ def fetch_data():
   #60秒間隔データのリクエストの作成
   url = summarydata_url + '?' + urllib.parse.urlencode(params)
   # トークンの読み込み
-  with open('token.txt', 'r') as f:
-    access_token = f.read()
+  if 'JINS_TOKEN' not in os.environ:
+    with open('token.txt', 'r') as f:
+      access_token = f.read()
+  else:
+    access_token = os.environ['JINS_TOKEN']
+  #リクエストヘッダーの作成
   headers = {
     'Authorization': 'Bearer ' + access_token,
     'Accept': 'application/json'
