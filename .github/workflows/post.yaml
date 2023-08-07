@@ -2,7 +2,7 @@ name: Post
 
 on:
   schedule:
-   - cron: '5 11 * * 0' # 20:05(Mon) JST
+   - cron: '5 11 * * *' # 20:05(Mon) JST
   workflow_dispatch:
 
 # Define the jobs that will run jins-reporter.py
