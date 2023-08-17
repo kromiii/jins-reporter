@@ -48,6 +48,9 @@ $ python jins-reporter.py
 
 レポートが生成され、Twitter に投稿されます
 
+サンプル
+![tweet-sample](tweet_sample.png)
+
 ## Github Action
 Github Action を使う場合は token.txt の内容を Github の Secrets に登録してください
 

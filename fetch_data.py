@@ -11,7 +11,6 @@ def fetch_data():
   #データ取得レンジ
   # 今日の日付を取得
   today = datetime.date.today().strftime("%Y-%m-%d")
-  today = "2023-08-07"
   params = {
     'date_from': f'{today}T00:00:00+09:00',
     'date_to': f'{today}T23:59:59+09:00',

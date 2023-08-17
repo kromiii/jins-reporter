@@ -1,6 +1,6 @@
 token.txt
 *.csv
-*.png
+report.png
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
